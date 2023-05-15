@@ -7,9 +7,13 @@ import { useState, FormEvent, useCallback } from "react";
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const activeTodos = todos.filter((todo) => !todo.archived);
+  const activeTodos = todos
+    .filter((todo) => !todo.archived)
+    .sort((a, b) => b.created.getTime() - a.created.getTime());
 
-  const archivedTodos = todos.filter((todo) => todo.archived);
+  const archivedTodos = todos
+    .filter((todo) => todo.archived)
+    .sort((a, b) => b.created.getTime() - a.created.getTime());
 
   const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,22 +25,20 @@ export default function Home() {
 
     setTodos((prev) => [
       ...prev,
-      { content: todo, archived: false, created: new Date() },
+      { content: todo, archived: false, created: new Date(), id: Date.now() },
     ]);
   }, []);
 
   const handleArchive = useCallback((todo: Todo) => {
     setTodos((prev) =>
-      prev.map((t) =>
-        t.content === todo.content ? { ...t, archived: true } : t
-      )
+      prev.map((t) => (t.id === todo.id ? { ...t, archived: true } : t))
     );
   }, []);
 
   const handleEdit = useCallback((todo: Todo, newContent: string) => {
     setTodos((prev) =>
       prev.map((t) =>
-        t.content === todo.content
+        t.id === todo.id
           ? { ...t, content: newContent, lastUpdated: new Date() }
           : t
       )
@@ -76,7 +78,7 @@ export default function Home() {
         <ul aria-label="todo list">
           {activeTodos.map((todo) => (
             <TodoItem
-              key={todo.content}
+              key={todo.id}
               todo={todo}
               onArchive={handleArchive}
               onEdit={handleEdit}
@@ -91,7 +93,7 @@ export default function Home() {
         )}
         <ul aria-label="archived list">
           {archivedTodos.map((todo) => (
-            <TodoItem key={todo.content} todo={todo} />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </ul>
       </section>

@@ -24,10 +24,8 @@ const penIcon = (
 
 const TodoItem = ({ todo, onArchive, onEdit }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
 
   const handleChecked = useCallback(() => {
-    setIsChecked((prev) => !prev);
     onArchive?.(todo);
   }, [onArchive, todo]);
 
@@ -48,7 +46,7 @@ const TodoItem = ({ todo, onArchive, onEdit }: Props) => {
             disabled={todo.archived}
             className="w-5 h-5"
             onChange={handleChecked}
-            checked={isChecked}
+            checked={todo.archived}
           />
           <p
             className={`flex-1 ${

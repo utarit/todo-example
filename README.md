@@ -6,6 +6,7 @@ This is a hobby project that I'm working on using Next.js.
 
 1. I assumed if a todo is archived (aka. Marked as done), there will be no way to put it back to the active todos. I prevented and disabled that on purpose.
 2. I put a max limit of 140 characters.
+3. Todos are sorted from latest to oldest.
 
 ## Getting Started
 
