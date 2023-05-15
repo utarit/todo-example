@@ -18,8 +18,10 @@ export default function Home() {
   const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const form = event.target as HTMLFormElement;
+
     // Read the form data
-    const formData = new FormData(event.target as HTMLFormElement);
+    const formData = new FormData(form);
 
     const todo = (formData.get("todo") as string).trim();
 
@@ -27,6 +29,8 @@ export default function Home() {
       ...prev,
       { content: todo, archived: false, created: new Date(), id: Date.now() },
     ]);
+
+    form.reset();
   }, []);
 
   const handleArchive = useCallback((todo: Todo) => {
