@@ -10,7 +10,7 @@ it("the user can add an item to the list", async () => {
   const user = userEvent.setup();
 
   // Write a todo in the input which is labeled "Add to-do"
-  const input = screen.getByRole("textbox", { name: "Add to-do" });
+  const input = screen.getByRole("textbox", { name: "Add todo" });
   await user.type(input, "Buy milk");
 
   const addButton = screen.getByRole("button", { name: "Add" });
@@ -19,7 +19,7 @@ it("the user can add an item to the list", async () => {
 
   // The todo should be in the list
   expect(
-    screen.getByRole("listitem", { name: "Buy milk" })
+    screen.getByRole("checkbox", { name: "Buy milk" })
   ).toBeInTheDocument();
 
   // Expect creation date
@@ -37,7 +37,7 @@ it("the user can edit an item in the list", async () => {
   const user = userEvent.setup();
 
   // Write a todo in the input
-  const input = screen.getByRole("textbox", { name: "Add to-do" });
+  const input = screen.getByRole("textbox", { name: "Add todo" });
   await user.type(input, "Buy milk");
 
   const addButton = screen.getByRole("button", { name: "Add" });
@@ -51,7 +51,7 @@ it("the user can edit an item in the list", async () => {
   await user.click(editButton);
 
   // Expect a text input with the value of to-do to be edited
-  const editInput = screen.getByRole("textbox", { name: "Edit to-do" });
+  const editInput = screen.getByRole("textbox", { name: "Edit todo" });
   expect(editInput).toHaveValue("Buy milk");
 
   // Edit the input
@@ -65,10 +65,10 @@ it("the user can edit an item in the list", async () => {
 
   // the todo should be changed with the new value
   expect(
-    screen.queryByRole("listitem", { name: "Buy milk" })
+    screen.queryByRole("checkbox", { name: "Buy milk" })
   ).not.toBeInTheDocument();
   expect(
-    screen.getByRole("listitem", { name: "Buy eggs" })
+    screen.getByRole("checkbox", { name: "Buy eggs" })
   ).toBeInTheDocument();
 
   // Expect creation date
@@ -106,7 +106,7 @@ it("the user can mark an item as done in the list and see it archived", async ()
 
   // The todo should be in the todo list
   expect(
-    screen.getByRole("listitem", { name: "Buy milk" })
+    screen.getByRole("checkbox", { name: "Buy milk" })
   ).toBeInTheDocument();
 
   expect(todoList.hasChildNodes).toHave(true);
@@ -124,6 +124,6 @@ it("the user can mark an item as done in the list and see it archived", async ()
   expect(archivedList.hasChildNodes).toBe(true);
 
   // Buy milk should appear in archived list and have line-through
-  const archivedItem = screen.queryByRole("listitem", { name: "Buy milk" });
+  const archivedItem = screen.queryByRole("checkbox", { name: "Buy milk" });
   expect(archivedItem).toHaveClass("line-through");
 });
