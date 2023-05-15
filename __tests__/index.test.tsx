@@ -95,13 +95,13 @@ it("the user can mark an item as done in the list and see it archived", async ()
   const user = userEvent.setup();
 
   // Write a todo in the input which is labeled "Add to-do"
-  const input = screen.getByRole("textbox", { name: "Add to-do" });
+  const input = screen.getByRole("textbox", { name: "Add todo" });
   await user.type(input, "Buy milk");
 
   const addButton = screen.getByRole("button", { name: "Add" });
   await user.click(addButton);
 
-  const todoList = screen.getByRole("list", { name: /to-do list/i });
+  const todoList = screen.getByRole("list", { name: /todo list/i });
   const archivedList = screen.getByRole("list", { name: /archived list/i });
 
   // The todo should be in the todo list
@@ -109,7 +109,7 @@ it("the user can mark an item as done in the list and see it archived", async ()
     screen.getByRole("listitem", { name: "Buy milk" })
   ).toBeInTheDocument();
 
-  expect(todoList.hasChildNodes).toBe(true);
+  expect(todoList.hasChildNodes).toHave(true);
   expect(archivedList.hasChildNodes).toBe(false);
 
   // Expect a checkbox to mark the item as done
