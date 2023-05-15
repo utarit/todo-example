@@ -44,7 +44,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center pt-24 px-4 w-full md:max-w-md">
+    <main className="flex min-h-screen flex-col items-center pt-4 md:pt-10 px-4 w-full md:max-w-md">
       <h1 className="text-3xl font-bold">Example TODO App</h1>
       <form
         className="flex flex-col items-center gap-4 p-8 shadow-md my-4 w-full bg-slate-100"
@@ -52,13 +52,15 @@ export default function Home() {
       >
         <label className="flex flex-col gap-2 items-start w-full">
           <small>Add todo</small>
-          <textarea
+          <input
             className="border border-gray-500 rounded-md p-2 w-full"
             placeholder="Add a new todo"
             required
             name="todo"
             maxLength={140}
-            minLength={1}
+            type="text"
+            pattern=".*\S.*"
+            title="Please enter a non-empty value"
           />
         </label>
 

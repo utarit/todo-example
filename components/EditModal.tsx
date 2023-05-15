@@ -27,13 +27,15 @@ const EditModal = ({ content, onClose, onSave }: Props) => {
       >
         <label className="flex flex-col gap-2 items-center w-full">
           <h2 className="text-2xl font-bold">Edit todo</h2>
-          <textarea
+          <input
             className="border border-gray-500 rounded-md p-2 w-full"
             required
             name="todo"
             maxLength={140}
-            minLength={1}
             defaultValue={content}
+            type="text"
+            pattern=".*\S.*"
+            title="Please enter a non-empty value"
           />
         </label>
         <div className="flex flex-row gap-4 w-full">
