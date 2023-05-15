@@ -44,7 +44,7 @@ it("the user can edit an item in the list", async () => {
   await user.click(addButton);
 
   // The todo should be in the list with edit button
-  const editButton = screen.getByRole("button", { name: "Edit todo" });
+  const editButton = screen.getByRole("button", { name: "Edit" });
   expect(editButton).toBeInTheDocument();
 
   await user.click(editButton);

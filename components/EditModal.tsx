@@ -47,13 +47,16 @@ const EditModal = ({ content, onClose, onSave }: Props) => {
         </label>
         <div className="flex flex-row gap-4 w-full">
           <button
-            className="w-full bg-red-500 rounded-md p-2"
+            className="w-full rounded-md p-2 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white"
             type="button"
             onClick={onClose}
           >
             Cancel
           </button>
-          <button className="w-full bg-green-500 rounded-md p-2" type="submit">
+          <button
+            className="w-full rounded-md p-2 bg-green-500  hover:bg-green-600 active:bg-green-700 text-white"
+            type="submit"
+          >
             Submit
           </button>
         </div>

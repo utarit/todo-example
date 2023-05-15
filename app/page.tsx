@@ -70,7 +70,10 @@ export default function Home() {
           />
         </label>
 
-        <button className="w-full bg-blue-500 rounded-md p-2" type="submit">
+        <button
+          className="w-full bg-blue-500 rounded-md p-2 hover:bg-blue-600 active:bg-blue-700 text-white"
+          type="submit"
+        >
           Add
         </button>
       </form>
