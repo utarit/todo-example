@@ -48,7 +48,13 @@ const TodoItem = ({ todo, onArchive, onEdit }: Props) => {
           onChange={handleChecked}
           checked={isChecked}
         />
-        <p className="flex-1">{todo.content}</p>
+        <p
+          className={`flex-1 ${
+            todo.archived ? "line-through text-gray-500 italic" : ""
+          }`}
+        >
+          {todo.content}
+        </p>
       </label>
       {!todo.archived && (
         <button

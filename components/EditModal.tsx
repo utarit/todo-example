@@ -22,7 +22,7 @@ const EditModal = ({ content, onClose, onSave }: Props) => {
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-10">
       <form
-        className="flex flex-col items-center gap-4 p-8 shadow-md my-4 w-full bg-yellow-100 z-20 fixed max-w-md top-1/4 rounded-lg"
+        className="flex flex-col items-center gap-4 p-8 shadow-md my-4 w-full bg-gray-50 z-20 fixed max-w-md top-1/4 rounded-lg"
         onSubmit={handleSubmit}
       >
         <label className="flex flex-col gap-2 items-center w-full">
@@ -45,8 +45,8 @@ const EditModal = ({ content, onClose, onSave }: Props) => {
           >
             Cancel
           </button>
-          <button className="w-full bg-blue-500 rounded-md p-2" type="submit">
-            Edit
+          <button className="w-full bg-green-500 rounded-md p-2" type="submit">
+            Submit
           </button>
         </div>
       </form>
