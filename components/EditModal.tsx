@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 
 interface Props {
   content: string;
@@ -7,6 +7,12 @@ interface Props {
 }
 
 const EditModal = ({ content, onClose, onSave }: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -35,6 +41,7 @@ const EditModal = ({ content, onClose, onSave }: Props) => {
             defaultValue={content}
             type="text"
             pattern=".*\S.*"
+            ref={inputRef}
             title="Please enter a non-empty value"
           />
         </label>

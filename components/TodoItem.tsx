@@ -37,6 +37,14 @@ const TodoItem = ({ todo, onArchive, onEdit }: Props) => {
     [onEdit, todo]
   );
 
+  const handleCheckboxKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter") {
+      handleChecked();
+    }
+  };
+
   return (
     <li className="w-full bg-slate-200 p-2 rounded-md mb-2 ">
       <div className="flex gap-4 items-start justify-between">
@@ -47,6 +55,7 @@ const TodoItem = ({ todo, onArchive, onEdit }: Props) => {
             className="w-5 h-5"
             onChange={handleChecked}
             checked={todo.archived}
+            onKeyDown={handleCheckboxKeyDown}
           />
           <p
             className={`flex-1 ${
