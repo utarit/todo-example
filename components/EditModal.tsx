@@ -26,10 +26,9 @@ const EditModal = ({ content, onClose, onSave }: Props) => {
         onSubmit={handleSubmit}
       >
         <label className="flex flex-col gap-2 items-center w-full">
-          <h2 className="text-2xl font-bold">Edit Todo</h2>
+          <h2 className="text-2xl font-bold">Edit todo</h2>
           <textarea
             className="border border-gray-500 rounded-md p-2 w-full"
-            placeholder="Add a new todo"
             required
             name="todo"
             maxLength={140}

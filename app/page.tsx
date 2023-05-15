@@ -87,7 +87,7 @@ export default function Home() {
         {(!archivedTodos || archivedTodos.length === 0) && (
           <p className="italic text-gray-500">No archived todos yet</p>
         )}
-        <ul aria-label="arcihved list">
+        <ul aria-label="archived list">
           {archivedTodos.map((todo) => (
             <TodoItem key={todo.content} todo={todo} />
           ))}
