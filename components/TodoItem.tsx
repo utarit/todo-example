@@ -2,6 +2,7 @@ import { Todo } from "@/types";
 import React, { useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import EditModal from "./EditModal";
+import { DEFAULT_DATE_FORMAT, DEFAULT_LOCALE } from "@/utils/dateUtils";
 
 interface Props {
   todo: Todo;
@@ -39,41 +40,56 @@ const TodoItem = ({ todo, onArchive, onEdit }: Props) => {
   );
 
   return (
-    <li className="flex gap-4 items-center justify-between p-2 rounded-md mb-2 w-full bg-slate-200">
-      <label className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          disabled={todo.archived}
-          className="w-4 h-4"
-          onChange={handleChecked}
-          checked={isChecked}
-        />
-        <p
-          className={`flex-1 ${
-            todo.archived ? "line-through text-gray-500 italic" : ""
-          }`}
-        >
-          {todo.content}
-        </p>
-      </label>
-      {!todo.archived && (
-        <button
-          className="p-2 bg-gray-200 rounded-md"
-          aria-label="Edit todo"
-          onClick={() => setIsModalOpen(true)}
-        >
-          {penIcon}
-        </button>
-      )}
-      {isModalOpen &&
-        createPortal(
-          <EditModal
-            content={todo.content}
-            onSave={handleEdit}
-            onClose={() => setIsModalOpen(false)}
-          />,
-          document.body
+    <li className="w-full bg-slate-200 p-2 rounded-md mb-2 ">
+      <div className="flex gap-4 items-start justify-between">
+        <label className="flex items-start gap-2">
+          <input
+            type="checkbox"
+            disabled={todo.archived}
+            className="w-5 h-5"
+            onChange={handleChecked}
+            checked={isChecked}
+          />
+          <p
+            className={`flex-1 ${
+              todo.archived ? "line-through text-gray-500 italic" : ""
+            }`}
+          >
+            {todo.content}
+          </p>
+        </label>
+        {!todo.archived && (
+          <button
+            className="p-2 bg-gray-200 rounded-md"
+            aria-label="Edit todo"
+            onClick={() => setIsModalOpen(true)}
+          >
+            {penIcon}
+          </button>
         )}
+        {isModalOpen &&
+          createPortal(
+            <EditModal
+              content={todo.content}
+              onSave={handleEdit}
+              onClose={() => setIsModalOpen(false)}
+            />,
+            document.body
+          )}
+      </div>
+      <p className="text-xs text-gray-500 border-t-2 border-gray-300 pt-2 mt-2">
+        <span className="font-bold">Created:</span>{" "}
+        {todo.created.toLocaleDateString(DEFAULT_LOCALE, DEFAULT_DATE_FORMAT)}{" "}
+      </p>
+      {todo.lastUpdated && (
+        <p className="text-xs text-gray-500 ">
+          <span className="font-bold">Last Updated:</span>{" "}
+          {todo.lastUpdated.toLocaleDateString(
+            DEFAULT_LOCALE,
+            DEFAULT_DATE_FORMAT
+          )}
+        </p>
+      )}
     </li>
   );
 };

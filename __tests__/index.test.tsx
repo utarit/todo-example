@@ -23,7 +23,7 @@ it("the user can add an item to the list", async () => {
   ).toBeInTheDocument();
 
   // Expect creation date
-  expect(screen.getByText("Created")).toBeInTheDocument();
+  expect(screen.getByText("Created:")).toBeInTheDocument();
   expect(
     screen.getByText(
       currentDate.toLocaleDateString(DEFAULT_LOCALE, DEFAULT_DATE_FORMAT),
@@ -72,7 +72,7 @@ it("the user can edit an item in the list", async () => {
   ).toBeInTheDocument();
 
   // Expect creation date
-  expect(screen.getByText("Created")).toBeInTheDocument();
+  expect(screen.getByText("Created:")).toBeInTheDocument();
   expect(
     screen.getByText(
       createdDate.toLocaleDateString(DEFAULT_LOCALE, DEFAULT_DATE_FORMAT),
@@ -81,7 +81,7 @@ it("the user can edit an item in the list", async () => {
   ).toBeInTheDocument();
 
   // Expect edited date
-  expect(screen.getByText("Last Updated")).toBeInTheDocument();
+  expect(screen.getByText("Last Updated:")).toBeInTheDocument();
   expect(
     screen.getByText(
       editedDate.toLocaleDateString(DEFAULT_LOCALE, DEFAULT_DATE_FORMAT),

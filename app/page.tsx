@@ -19,7 +19,10 @@ export default function Home() {
 
     const todo = (formData.get("todo") as string).trim();
 
-    setTodos((prev) => [...prev, { content: todo, archived: false }]);
+    setTodos((prev) => [
+      ...prev,
+      { content: todo, archived: false, created: new Date() },
+    ]);
   }, []);
 
   const handleArchive = useCallback((todo: Todo) => {
@@ -33,7 +36,9 @@ export default function Home() {
   const handleEdit = useCallback((todo: Todo, newContent: string) => {
     setTodos((prev) =>
       prev.map((t) =>
-        t.content === todo.content ? { ...t, content: newContent } : t
+        t.content === todo.content
+          ? { ...t, content: newContent, lastUpdated: new Date() }
+          : t
       )
     );
   }, []);
